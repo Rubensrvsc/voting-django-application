@@ -3,6 +3,9 @@ from .models import *
 from .forms import *
 from django.views import generic
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.contrib.auth import authenticate, login
 # Create your views here.
 
 class SignUpView(generic.View):
@@ -33,4 +36,32 @@ class SignUpView(generic.View):
             'form': form,
             'error': 'Usuário ou senha inválidos'
         }
+        return render(request, self.template_name, data)
+
+class LoginView(generic.View):
+
+    template_name = "login.html"
+
+    def get(self,request):
+        data = {"form": UserLoginForm()}
+
+        return render(request,self.template_name,data)
+    
+    def post(self,request):
+        form = UserLoginForm(data=request.POST)
+
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request,username=username, password=password)
+            print(username,password)
+            if username and password and user is not None:
+                print("entrou")
+                login(request, user)
+                return render(request,"index.html")
+        
+        data = { 
+            'form': form,
+            'error': 'Usuário ou senha inválidos'
+        }     
         return render(request, self.template_name, data)
