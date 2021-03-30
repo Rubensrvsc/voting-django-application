@@ -7,5 +7,6 @@ urlpatterns = [
     path('login',LoginView.as_view(),name="login"),
     path('index',IndexView.as_view(),name="index"),
     path('logout',LogoutView.as_view(),name="logout"),
+    path('cadastrar',CadastrarItemView.as_view(),name="cadastrar_item"),
 
 ]

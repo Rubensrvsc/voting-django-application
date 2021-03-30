@@ -1,4 +1,5 @@
 from django import forms
+from .models import *
 
 class UserSignUpForm(forms.Form):
     
@@ -10,3 +11,9 @@ class UserLoginForm(forms.Form):
 
     username = forms.CharField(label="Usuário")
     password = forms.CharField(label="Senha", widget = forms.PasswordInput)
+
+class ItemForm(forms.ModelForm):
+
+    class Meta:
+        model = Item
+        fields = ['nome','descricao']

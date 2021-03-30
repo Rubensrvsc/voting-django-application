@@ -84,3 +84,25 @@ class LogoutView(generic.View):
     def get(self,request):
         logout(request)
         return HttpResponseRedirect(reverse('login'))
+
+class CadastrarItemView(generic.CreateView):
+
+    template_name = "cadastrar_item.html"
+
+    @method_decorator(login_required)
+    def get(self, request, *args, **kwargs):
+        form = ItemForm()
+        return render(request,self.template_name,{'form':form})
+    
+    @method_decorator(login_required)
+    def post(self, request, *args, **kwargs):
+        form = ItemForm(request.POST)
+        print(request.user.eleitor)
+        if form.is_valid():
+            item = form.save(commit=False)
+
+            item.itens = request.user.eleitor
+            item.save()
+            return redirect('index')
+        return render(request,self.template_name,{'form':form})
+    
