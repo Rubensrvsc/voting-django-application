@@ -58,10 +58,18 @@ class LoginView(generic.View):
             if username and password and user is not None:
                 print("entrou")
                 login(request, user)
-                return render(request,"index.html")
+                return redirect('index')
         
         data = { 
             'form': form,
             'error': 'Usuário ou senha inválidos'
         }     
         return render(request, self.template_name, data)
+
+class IndexView(generic.View):
+
+    template_name = "index.html"
+
+    def get(self,request):
+        data = {"user": request.user}
+        return render(request,self.template_name,data)
