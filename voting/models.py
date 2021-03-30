@@ -9,4 +9,4 @@ class Vote(models.Model):
 
 class Eleitor(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    vote = models.ForeignKey(Vote,related_name="user_vote",on_delete=models.CASCADE)
+    vote = models.ForeignKey(Vote,related_name="user_vote",on_delete=models.CASCADE,null=True)
