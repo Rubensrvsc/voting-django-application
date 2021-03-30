@@ -7,6 +7,8 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 # Create your views here.
 
 class SignUpView(generic.View):
@@ -55,9 +57,9 @@ class LoginView(generic.View):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(request,username=username, password=password)
-            print(username,password)
+           
             if username and password and user is not None:
-                print("entrou")
+                
                 login(request, user)
                 return redirect('index')
         
@@ -71,12 +73,14 @@ class IndexView(LoginRequiredMixin,generic.View):
 
     template_name = "index.html"
 
+    @method_decorator(login_required)
     def get(self,request):
         data = {"user": request.user}
         return render(request,self.template_name,data)
 
-class LogoutView(LoginRequiredMixin,generic.View):
+class LogoutView(generic.View):
 
+    @method_decorator(login_required)
     def get(self,request):
         logout(request)
         return HttpResponseRedirect(reverse('login'))
