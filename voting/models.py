@@ -14,5 +14,5 @@ class Item(models.Model):
     def __str__(self):
         return self.nome
 class Vote(models.Model):
-    eleitor_vote = models.OneToOneField(Eleitor,related_name="eleitor_vote",on_delete=models.CASCADE,null=True)
-    item_vote = models.OneToOneField(Item,related_name="item_vote",on_delete=models.CASCADE,null=True)
+    eleitor_vote = models.ForeignKey(Eleitor,related_name="eleitor_vote",on_delete=models.CASCADE,null=True)
+    item_vote = models.ForeignKey(Item,related_name="item_vote",on_delete=models.CASCADE,null=True)

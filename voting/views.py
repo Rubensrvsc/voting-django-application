@@ -108,5 +108,23 @@ class CadastrarItemView(generic.CreateView):
             return redirect('index')
         return render(request,self.template_name,{'form':form})
     
+class VotoItemView(generic.View):
+
+
+    @method_decorator(login_required)
+    def get(self,request,id: int,username):
+
+        eleitor = Eleitor.objects.get(user__username=username)
+        item = Item.objects.get(id=id)
+        Vote.objects.create(
+            eleitor_vote=eleitor,
+            item_vote=item
+        )
+        return redirect('index')
+
+    @method_decorator(login_required)
+    def post(self, request, *args, **kwargs):
+        return redirect('index')
+    
 
     

@@ -9,6 +9,8 @@
     {% for i in itens%}
         <p>{{i.nome}}</p>
         <p>{{i.itens.user.username}}</p>
+        <a href="{% url 'voto' i.id user.username %}">Vote</a>
     {% endfor %}
+    
 
 </div>
