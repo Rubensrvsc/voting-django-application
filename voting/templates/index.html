@@ -2,3 +2,13 @@
 
 <a href="{% url 'logout' %}">Logout</a>
 <a href="{% url 'cadastrar_item' %}">Cadastrar</a>
+
+<h2>Votos</h2>
+
+<div>
+    {% for i in itens%}
+        <p>{{i.nome}}</p>
+        <p>{{i.itens.user.username}}</p>
+    {% endfor %}
+
+</div>
