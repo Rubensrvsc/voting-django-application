@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.db.models import Q
 # Create your views here.
 
 class SignUpView(generic.View):
@@ -76,7 +77,7 @@ class IndexView(LoginRequiredMixin,generic.View):
     @method_decorator(login_required)
     def get(self,request):
         data = {"user": request.user,
-        "itens": Item.objects.exclude(itens__user__username=request.user.username)}
+        "itens": Item.objects.filter(~Q(itens__user__username=request.user.username) & ~Q(item_vote__eleitor_vote__user__username=request.user.username))}
         return render(request,self.template_name,data)
 
 class LogoutView(generic.View):
@@ -89,13 +90,22 @@ class LogoutView(generic.View):
 class CadastrarItemView(generic.CreateView):
 
     template_name = "cadastrar_item.html"
-    model = Item
-    fields = 'nome','descricao'
-    success_url = '/index'
 
     @method_decorator(login_required)
     def get(self, request, *args, **kwargs):
         form = ItemForm()
+        return render(request,self.template_name,{'form':form})
+    
+    @method_decorator(login_required)
+    def post(self, request, *args, **kwargs):
+        form = ItemForm(request.POST)
+        print(request.user.eleitor)
+        if form.is_valid():
+            item = form.save(commit=False)
+
+            item.itens = request.user.eleitor
+            item.save()
+            return redirect('index')
         return render(request,self.template_name,{'form':form})
     
 
