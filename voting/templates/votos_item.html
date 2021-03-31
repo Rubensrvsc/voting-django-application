@@ -1,0 +1,12 @@
+<h1>Hello votos item</h1>
+
+<div>
+    {% for i in votos%}
+        <p>{{i.eleitor_vote.user.username}}</p>
+      
+        <a href="{% url 'index'  %}">Voltar</a>
+
+    {% endfor %}
+    
+
+</div>

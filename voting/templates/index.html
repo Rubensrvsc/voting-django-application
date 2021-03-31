@@ -10,6 +10,7 @@
         <p>{{i.nome}}</p>
         <p>{{i.itens.user.username}}</p>
         <a href="{% url 'voto' i.id user.username %}">Vote</a>
+        <a href="{% url 'votos_item' i.id %}">Votos do item</a>
     {% endfor %}
     
 

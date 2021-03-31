@@ -125,6 +125,17 @@ class VotoItemView(generic.View):
     @method_decorator(login_required)
     def post(self, request, *args, **kwargs):
         return redirect('index')
+
+class VerVotosView(generic.View):
+
+    template_name = "votos_item.html"
+
+    @method_decorator(login_required)
+    def get(self, request, id_voto: int):
+        data = {'user':request.user,
+            'votos': Vote.objects.filter(id=id_voto)
+        }
+        return render(request,self.template_name,data)
     
 
     
