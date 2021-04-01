@@ -4,9 +4,8 @@
     {% for i in votos%}
         <p>{{i.eleitor_vote.user.username}}</p>
       
-        <a href="{% url 'index'  %}">Voltar</a>
 
     {% endfor %}
     
-
+    <a href="{% url 'index'  %}">Voltar</a>
 </div>

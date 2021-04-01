@@ -137,7 +137,7 @@ class VerVotosView(generic.View):
     @method_decorator(login_required)
     def get(self, request, id_voto: int):
         data = {'user':request.user,
-            'votos': Vote.objects.filter(id=id_voto)
+            'votos': Vote.objects.filter(item_vote__id=id_voto)
         }
         return render(request,self.template_name,data)
     
