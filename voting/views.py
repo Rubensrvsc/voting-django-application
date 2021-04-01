@@ -34,8 +34,12 @@ class SignUpView(generic.View):
                 )
                 Eleitor.objects.create(user=user)
 
-                if user:
-                    return render(request,"index.html")
+                auth = authenticate(request,username=username, password=password1)
+           
+                if username and password1 and auth is not None:
+                
+                    login(request, auth)
+                    return redirect('index')
         data = { 
             'form': form,
             'error': 'Usuário ou senha inválidos'
