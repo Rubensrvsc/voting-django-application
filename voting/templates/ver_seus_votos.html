@@ -1,0 +1,12 @@
+<h1>Hello ver seus votos item</h1>
+
+<div>
+    {% for i in votos%}
+        <p>{{i.item_vote.nome}}</p>
+        <p>{{i.item_vote.itens.user.username}}</p>
+      
+
+    {% endfor %}
+    
+    <a href="{% url 'index'  %}">Voltar</a>
+</div>

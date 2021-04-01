@@ -140,6 +140,21 @@ class VerVotosView(generic.View):
             'votos': Vote.objects.filter(item_vote__id=id_voto)
         }
         return render(request,self.template_name,data)
+
+class VerSeusVotosView(generic.View):
+
+    template_name = "ver_seus_votos.html"
+
+    @method_decorator(login_required)
+    def get(self,request):
+        data = {
+            'user':request.user,
+            'votos': Vote.objects.filter(eleitor_vote=request.user.eleitor)
+        }
+        el = Eleitor.objects.get(user=request.user)
+        print(type(el))
+        print(Vote.objects.filter(eleitor_vote=request.user.eleitor))
+        return render(request,self.template_name,data)
     
 
     
