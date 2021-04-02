@@ -1,17 +1,27 @@
-<h1>Sign up</h1>
+{% load static %}
+<link href="{% static "style/login.css" %}" rel="stylesheet">
 
+<body>
+    <div class="center">
 <form method="POST" action="{% url 'signup' %}">
+    <h1>Sign up</h1>
     {% csrf_token %}
     
+    <div class="txt_field">
     {% for field in form %}
         <b>{{ field.label }}</b>: {{ field }}
         <br><br>
     {% endfor %}
-
+    </div>
     {% if error %}
     <span style="color: red;">{{ error }}</span>
     <br><br>
     {% endif %}
     
     <input type="submit" value="Cadastrar" />
+    <div class="sign_up_link">
+        Já tem cadastro? <a href="{% url 'login' %}">Entre</a>
+    </div>
 </form>
+</div>
+</body>
