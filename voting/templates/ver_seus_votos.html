@@ -1,3 +1,23 @@
+
+{% load static %}
+<link href="{% static "style/cabecalho.css" %}" rel="stylesheet">
+
+<body>
+<header class="header">
+
+<h1>Bem vindo  {{request.user.username}}</h1>
+<nav class="menu">
+    <ul>
+        <li>
+            <a href="{% url 'index' %}">Home</a>
+            <a href="{% url 'cadastrar_item' %}">Cadastrar Item</a>
+            <a href="{% url 'ver_seus_votos' %}">Ver seus votos</a>
+            <a href="{% url 'logout' %}">Logout</a>
+</li>
+</ul>
+</nav>
+</header>
+
 <h1>Hello ver seus votos item</h1>
 
 <div>

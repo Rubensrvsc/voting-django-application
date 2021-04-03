@@ -1,8 +1,20 @@
-<h1>Bem vindo  {{request.user.username}}</h1>
+{% load static %}
+<link href="{% static "style/cabecalho.css" %}" rel="stylesheet">
 
-<a href="{% url 'logout' %}">Logout</a>
-<a href="{% url 'cadastrar_item' %}">Cadastrar</a>
-<a href="{% url 'ver_seus_votos' %}">Ver seus votos</a>
+<body>
+<header class="header">
+
+<h1>Bem vindo  {{request.user.username}}</h1>
+<nav class="menu">
+    <ul>
+        <li>
+            <a href="{% url 'cadastrar_item' %}">Cadastrar Item</a>
+            <a href="{% url 'ver_seus_votos' %}">Ver seus votos</a>
+            <a href="{% url 'logout' %}">Logout</a>
+</li>
+</ul>
+</nav>
+</header>
 
 <h2>Votos</h2>
 
@@ -16,3 +28,4 @@
     
 
 </div>
+</body>
