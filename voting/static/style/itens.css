@@ -1,0 +1,23 @@
+.h2_voto h2{
+    position: relative;
+    text-align: center;
+}
+
+.flex{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.flex > div{
+    flex: 1 1 200px;
+    margin: 10px;
+    box-shadow: 10px 2px 5px black;
+    text-align: center;
+    padding: 2%;
+}
+
+.flex > div a{
+    color: blue;
+}
