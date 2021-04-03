@@ -1,6 +1,7 @@
 
 {% load static %}
 <link href="{% static "style/cabecalho.css" %}" rel="stylesheet">
+<link href="{% static "style/itens.css" %}" rel="stylesheet">
 
 <body>
 <header class="header">
@@ -18,15 +19,20 @@
 </nav>
 </header>
 
-<h1>Hello ver seus votos item</h1>
-
-<div>
+<div class="h2_voto">
+<h2>Hello ver seus votos item</h2>
+</div>
+<section class="flex">
+    {%if votos|length is 0%}
+    <h4>Você ainda você não votou</h4>
+    {%endif%}
     {% for i in votos%}
+    <div>
         <p>{{i.item_vote.nome}}</p>
         <p>{{i.item_vote.itens.user.username}}</p>
       
-
+    </div>
     {% endfor %}
-    
-    <a href="{% url 'index'  %}">Voltar</a>
-</div>
+
+
+</section>
