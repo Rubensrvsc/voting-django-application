@@ -1,0 +1,22 @@
+.h1_cadastro{
+    width: 100%;
+    text-align: center;
+}
+
+.formulario{
+width: 100%;
+text-align: center;
+}
+
+input {
+    border: none;
+    background: hsl(0 0% 93%);
+    border-radius: .25rem;
+    padding: .75rem 1rem;
+} 
+input[type="submit"] {
+      background: hotpink;
+      color: white;
+      box-shadow: 0 .75rem .5rem -.5rem hsl(0 50% 80%);
+    }
+  

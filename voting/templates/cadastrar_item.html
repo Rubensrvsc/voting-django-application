@@ -1,5 +1,6 @@
 {% load static %}
 <link href="{% static "style/cabecalho.css" %}" rel="stylesheet">
+<link href="{% static "style/formulario.css" %}" rel="stylesheet">
 
 <body>
 <header class="header">
@@ -16,10 +17,12 @@
 </ul>
 </nav>
 </header>
-
+<div class="h1_cadastro">
 <h1>Hello cadastro</h1>
+</div>
 
-<form method="POST">
+<div class="formulario">
+<form method="POST" >
     {% csrf_token %}
     
     {% for field in form %}
@@ -34,3 +37,4 @@
     
     <input type="submit" value="Enviar" />
 </form>
+</div>
