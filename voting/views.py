@@ -152,8 +152,7 @@ class VerSeusVotosView(generic.View):
             'votos': Vote.objects.filter(eleitor_vote=request.user.eleitor)
         }
         el = Eleitor.objects.get(user=request.user)
-        print(type(el))
-        print(Vote.objects.filter(eleitor_vote=request.user.eleitor))
+
         return render(request,self.template_name,data)
     
 
