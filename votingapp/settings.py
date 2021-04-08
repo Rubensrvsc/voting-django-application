@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,7 @@ SECRET_KEY = 'or8$(y#dfqy22a%qr$vvuc=1cs6qyb&v__n%07hh-ak6jiv!9y'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'https://voting-django-application.herokuapp.com/'
+
 ]
 
 
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'gunicorn',
+    'django_heroku',
     'voting',
 ]
 
@@ -124,3 +126,4 @@ LOGIN_REDIRECT_URL = '/signup/'
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+django_heroku.settings(locals())
