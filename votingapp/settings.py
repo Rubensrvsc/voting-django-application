@@ -25,7 +25,9 @@ SECRET_KEY = 'or8$(y#dfqy22a%qr$vvuc=1cs6qyb&v__n%07hh-ak6jiv!9y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'https://voting-django-application.herokuapp.com/'
+]
 
 
 # Application definition
